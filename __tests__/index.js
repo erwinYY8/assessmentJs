@@ -159,3 +159,20 @@ describe("problem 6 (setDefaults)", () => {
     });
   });
 });
+
+
+describe('problem 7 (fetchUserByNameAndUsersCompany)', () => {
+  const {
+    services, company, status, userInfo,
+  } = require('./__helpers__/p7');
+
+  test('asyn fetches a user by name, the users company and a status', () =>
+    utils.fetchUserByNameAndUsersCompany('jokey', services).then(res =>
+      expect(res).toEqual({
+        company,
+        status,
+        user: userInfo[0]
+      })
+    )
+  );
+});

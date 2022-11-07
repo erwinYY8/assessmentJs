@@ -38,3 +38,28 @@ exports.createGreeting = (greetFunc, greeting) => name => greetFunc(greeting, na
 
 
 exports.setDefaults = () => obj => Object.assign({ promotion: true }, obj);
+
+
+exports.fetchUserByNameAndUsersCompany = (name, services) => {
+  async function fetchUser() {
+    const users = await services.fetchUsers();
+    const user = users.find((user) => user.userName === name);
+    if (!user) {
+      return new Error(`${name}有误`)
+    }
+    return { 
+      user, 
+      company: user.company,
+      status: user.status
+    };
+  }
+
+  return new Promise(async (resolve, reject) => {
+    try {
+      const res = await fetchUser()
+      resolve(res)
+    } catch (err) {
+      reject(err)
+    }
+  });
+};

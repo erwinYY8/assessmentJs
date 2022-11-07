@@ -7,6 +7,9 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
+  "jest": {
+    "testRegex": "/__tests__/index.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
